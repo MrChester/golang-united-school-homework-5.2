@@ -41,7 +41,7 @@ func (c Cache) Keys() []string {
 func (c Cache) PutTill(key, value string, deadline time.Time) {
 	c.Put(key, value)
 
-	if time.Now().Minute() == deadline.Minute() {
+	if time.Now().Minute() >= deadline.Minute() {
 		delete(c.kvPairs, key)
 	}
 }
